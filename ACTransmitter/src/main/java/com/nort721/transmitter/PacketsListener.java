@@ -43,11 +43,11 @@ public class PacketsListener extends PacketAdapter {
             boolean isFlying = event.getPacket().getBooleans().read(1);
             boolean canFly = event.getPacket().getBooleans().read(2);
 
-            packetData.append("1").append("|");
+            packetData.append("3").append("|");
             packetData.append(player.getUniqueId()).append("|");
-            packetData.append("timeStamp=").append(currentTime).append('|');
-            packetData.append("isflying=").append(isFlying).append('|');
-            packetData.append("canfly=").append(canFly).append('|');
+            packetData.append(currentTime).append('|');
+            packetData.append(isFlying).append('|');
+            packetData.append(canFly).append('|');
         }
 
         if (packetData.length() > 0) {
@@ -63,6 +63,26 @@ public class PacketsListener extends PacketAdapter {
 
         /* doing this on the netty thread to get the most accurate time */
         long currentTime = System.currentTimeMillis();
+
+        StringBuilder packetData = new StringBuilder();
+
+        if (event.getPacketType() == PacketType.Play.Server.ABILITIES) {
+
+            // ToDo find a dynamic way to send packets values without checking types
+
+            boolean isFlying = event.getPacket().getBooleans().read(1);
+            boolean canFly = event.getPacket().getBooleans().read(2);
+
+            packetData.append("4").append("|");
+            packetData.append(player.getUniqueId()).append("|");
+            packetData.append(currentTime).append('|');
+            packetData.append(isFlying).append('|');
+            packetData.append(canFly).append('|');
+        }
+
+        if (packetData.length() > 0) {
+            acTransmitter.getComputationServerHandler().sendDataToServer(packetData.toString());
+        }
     }
 
     /**

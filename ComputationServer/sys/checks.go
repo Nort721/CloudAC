@@ -15,13 +15,18 @@ type CheckAbilties struct {
 }
 
 func (c CheckAbilties) OnPacketReceived(packetType PacketType, args []string) {
-	if packetType == CLIENT_ABILITIES {
-		for i := 0; i < len(args); i++ {
-			fmt.Println(args[i])
-		}
+	var uuid string = args[1]
 
-		if args[3] == "isflying=true" {
+	for i := 0; i < len(args); i++ {
+		fmt.Println(args[i])
+	}
+
+	if packetType == CLIENT_ABILITIES {
+
+		profile := Get(uuid)
+		if args[3] == "true" && !profile.isAllowedFlightServer {
 			fmt.Println("FLAG!")
 		}
+
 	}
 }

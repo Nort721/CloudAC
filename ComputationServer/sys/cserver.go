@@ -47,6 +47,8 @@ func startServer() {
 		// get message, output
 		message, _ := bufio.NewReader(socket).ReadString('\n')
 
+		fmt.Println(message)
+
 		executeChecks(message, checksList)
 	}
 }

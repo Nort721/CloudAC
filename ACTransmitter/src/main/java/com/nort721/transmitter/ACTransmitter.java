@@ -22,6 +22,7 @@ public class ACTransmitter extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        getServer().getPluginManager().registerEvents(new BukkitListener(), this);
         packetAdapters.add(new PacketsListener(this));
         computationServerHandler = new ComputationServerHandler("localhost", 1234);
         computationServerHandler.start();
