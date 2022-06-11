@@ -1,6 +1,9 @@
 package sys
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 type Processor interface {
 	ProcessesIncomingPacket(packetType PacketType, args []string)
@@ -17,21 +20,17 @@ type StatusProcessor struct {
 func (c StatusProcessor) ProcessesIncomingPacket(packetType PacketType, args []string) {
 	var uuid string = args[1]
 
-	for i := 0; i < len(args); i++ {
-		fmt.Println(args[i])
-	}
-
 	if packetType == JOIN {
 
 		if !Contains(uuid) {
 			Add(uuid)
-			fmt.Println("New profile has been created uuid -> ", uuid)
+			fmt.Println("New profile uuid -> ", uuid)
 		}
 
 	} else if packetType == LEAVE {
 
 		Remove(uuid)
-		fmt.Println("Profile has been removed uuid -> ", uuid)
+		fmt.Println("Removed profile uuid -> ", uuid)
 
 	} else if packetType == FLYING {
 
@@ -43,6 +42,8 @@ func (c StatusProcessor) ProcessesIncomingPacket(packetType PacketType, args []s
 			profile.z = 0
 			profile.yaw = 0
 			profile.pitch = 0
+
+			profile_map[uuid] = profile
 		}
 
 	} else if packetType == CLIENT_ABILITIES {
@@ -53,8 +54,11 @@ func (c StatusProcessor) ProcessesIncomingPacket(packetType PacketType, args []s
 		if Contains(uuid) {
 			profile := Get(uuid)
 
-			profile.isAllowedFlightClient = isFlying == "true"
-			profile.isAllowedFlightClient = isAllowedFlight == "true"
+			// there is probably a better way to do that, but works for now...
+			profile.isFlyingClient = strings.Contains(isFlying, "true")
+			profile.isAllowedFlightClient = strings.Contains(isAllowedFlight, "true")
+
+			profile_map[uuid] = profile
 		}
 
 	} else if packetType == SERVER_ABILITIES {
@@ -65,8 +69,11 @@ func (c StatusProcessor) ProcessesIncomingPacket(packetType PacketType, args []s
 		if Contains(uuid) {
 			profile := Get(uuid)
 
-			profile.isAllowedFlightServer = isFlying == "true"
-			profile.isAllowedFlightServer = isAllowedFlight == "true"
+			// there is probably a better way to do that, but works for now...
+			profile.isFlyingServer = strings.Contains(isFlying, "true")
+			profile.isAllowedFlightServer = strings.Contains(isAllowedFlight, "true")
+
+			profile_map[uuid] = profile
 		}
 
 	}

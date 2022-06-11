@@ -19,8 +19,11 @@ func Start() {
 	fmt.Println("===================================")
 	fmt.Println("")
 
-	packetTypes["0"] = FLYING
-	packetTypes["1"] = CLIENT_ABILITIES
+	packetTypes["0"] = JOIN
+	packetTypes["1"] = LEAVE
+	packetTypes["2"] = FLYING
+	packetTypes["3"] = CLIENT_ABILITIES
+	packetTypes["4"] = SERVER_ABILITIES
 
 	startServer()
 }
@@ -35,8 +38,10 @@ func startServer() {
 	fmt.Println("")
 
 	checksList := make([]Check, 1)
+	processorsList := make([]Processor, 1)
 
 	checksList[0] = CheckAbilties{}
+	processorsList[0] = StatusProcessor{}
 
 	// run loop forever (or until ctrl-c)
 	for {
@@ -49,7 +54,17 @@ func startServer() {
 
 		fmt.Println(message)
 
+		executeProcessors(message, processorsList)
 		executeChecks(message, checksList)
+	}
+}
+
+func executeProcessors(message string, processeorsList []Processor) {
+	for i := 0; i < len(processeorsList); i++ {
+
+		args := strings.Split(message, "|")
+
+		processeorsList[i].ProcessesIncomingPacket(packetTypes[args[0]], args)
 	}
 }
 

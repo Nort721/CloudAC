@@ -1,6 +1,8 @@
 package sys
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Check interface {
 	OnPacketReceived(packetType PacketType, args []string)
@@ -17,14 +19,11 @@ type CheckAbilties struct {
 func (c CheckAbilties) OnPacketReceived(packetType PacketType, args []string) {
 	var uuid string = args[1]
 
-	for i := 0; i < len(args); i++ {
-		fmt.Println(args[i])
-	}
-
 	if packetType == CLIENT_ABILITIES {
 
 		profile := Get(uuid)
-		if args[3] == "true" && !profile.isAllowedFlightServer {
+
+		if profile.isAllowedFlightClient && !profile.isAllowedFlightServer {
 			fmt.Println("FLAG!")
 		}
 
