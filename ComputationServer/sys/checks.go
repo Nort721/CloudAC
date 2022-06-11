@@ -24,7 +24,7 @@ func (c CheckAbilties) OnPacketReceived(packetType PacketType, args []string) {
 		profile := Get(uuid)
 
 		if profile.isAllowedFlightClient && !profile.isAllowedFlightServer {
-			fmt.Println("FLAG!")
+			fmt.Println("server -> (CheckAbilities) -> FLAG!")
 		}
 
 	}

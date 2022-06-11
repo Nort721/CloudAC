@@ -24,13 +24,13 @@ func (c StatusProcessor) ProcessesIncomingPacket(packetType PacketType, args []s
 
 		if !Contains(uuid) {
 			Add(uuid)
-			fmt.Println("New profile uuid -> ", uuid)
+			fmt.Println("server -> New profile (uuid-" + uuid + ")")
 		}
 
 	} else if packetType == LEAVE {
 
 		Remove(uuid)
-		fmt.Println("Removed profile uuid -> ", uuid)
+		fmt.Println("server -> Removed profile (uuid-" + uuid + ")")
 
 	} else if packetType == FLYING {
 

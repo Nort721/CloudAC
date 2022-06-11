@@ -34,7 +34,7 @@ func startServer() {
 
 	server, _ := net.Listen("tcp", ":"+strconv.Itoa(connectionPort))
 
-	fmt.Println("listening on ", connectionPort, " . . .")
+	fmt.Println("listening on", connectionPort, " . . .")
 	fmt.Println("")
 
 	checksList := make([]Check, 1)
@@ -52,7 +52,12 @@ func startServer() {
 		// get message, output
 		message, _ := bufio.NewReader(socket).ReadString('\n')
 
-		fmt.Println(message)
+		message = Decode(message)
+
+		// remove the \n at the end
+		message = strings.Trim(message, "\n")
+
+		fmt.Println("received request ->", message)
 
 		executeProcessors(message, processorsList)
 		executeChecks(message, checksList)
