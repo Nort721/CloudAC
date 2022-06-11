@@ -15,7 +15,7 @@ func Start() {
 	const version string = "Build 0"
 
 	fmt.Println("===================================")
-	fmt.Println("Server " + version)
+	fmt.Println("AntiCheat-ComputationServer " + version)
 	fmt.Println("===================================")
 	fmt.Println("")
 
