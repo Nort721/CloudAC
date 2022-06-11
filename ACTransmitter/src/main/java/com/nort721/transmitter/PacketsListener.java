@@ -47,7 +47,7 @@ public class PacketsListener extends PacketAdapter {
             packetData.append(player.getUniqueId()).append("|");
             packetData.append(currentTime).append('|');
             packetData.append(isFlying).append('|');
-            packetData.append(canFly).append('|');
+            packetData.append(canFly);
         }
 
         if (packetData.length() > 0) {
@@ -66,7 +66,13 @@ public class PacketsListener extends PacketAdapter {
 
         StringBuilder packetData = new StringBuilder();
 
-        if (event.getPacketType() == PacketType.Play.Server.ABILITIES) {
+        if (event.getPacketType() == PacketType.Play.Server.LOGIN) {
+
+            packetData.append("0").append("|");
+            packetData.append(player.getUniqueId()).append("|");
+            packetData.append(currentTime);
+
+        } else if (event.getPacketType() == PacketType.Play.Server.ABILITIES) {
 
             // ToDo find a dynamic way to send packets values without checking types
 
@@ -77,7 +83,7 @@ public class PacketsListener extends PacketAdapter {
             packetData.append(player.getUniqueId()).append("|");
             packetData.append(currentTime).append('|');
             packetData.append(isFlying).append('|');
-            packetData.append(canFly).append('|');
+            packetData.append(canFly);
         }
 
         if (packetData.length() > 0) {

@@ -32,26 +32,28 @@ public class ComputationServerHandler extends Thread {
         }
     }
 
-    private void startCommunication() throws IOException {
-        socket = new Socket(computation_server_address, computation_server_port);
+    private void startCommunication() throws IOException {}
 
-        // data received from license server
-        input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+    public void sendDataToServer(String data) {
+        try {
+            socket = new Socket(computation_server_address, computation_server_port);
 
-        // used to send data to license server
-        output = new PrintWriter(socket.getOutputStream(), true);
+            // data received from license server
+            input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-        while (true) {
-            processServerReply(input.readLine());
+            // used to send data to license server
+            output = new PrintWriter(socket.getOutputStream(), true);
+
+            output.println(data);
+
+            System.out.println("sent socket - " + data);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    public void sendDataToServer(String data) {
-        output.println(data);
-    }
-
     private void processServerReply(String msg) {
-        System.out.println("got message from server -> " + msg);
+        System.out.println("server -> " + msg);
     }
 
     public void closeConnection() {
