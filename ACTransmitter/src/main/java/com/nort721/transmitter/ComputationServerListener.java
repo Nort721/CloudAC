@@ -60,7 +60,7 @@ public class ComputationServerListener extends Thread {
                 System.err.println("Error creating streams: " + e.getMessage());
             }
 
-            System.out.println(" -> established secure connection with " + socket.getInetAddress().getHostAddress());
+            //System.out.println(" -> established secure connection with " + socket.getInetAddress().getHostAddress());
         }
 
         @Override

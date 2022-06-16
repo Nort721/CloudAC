@@ -62,9 +62,9 @@ func (c CheckSpeed) OnPacketReceived(packetType PacketType, args []string) {
 
 		if !profile.onGround && !profile.lastOnGround {
 
-			fmt.Println("scaledEqual:", scaledEqual)
+			//fmt.Println("scaledEqual:", scaledEqual)
 			if scaledEqual > 1.1 {
-				fmt.Println("vl:", vl)
+				//fmt.Println("vl:", vl)
 				vl += 1
 				if vl > 2 {
 					vl = 0

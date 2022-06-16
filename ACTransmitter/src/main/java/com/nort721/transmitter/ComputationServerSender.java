@@ -46,7 +46,7 @@ public class ComputationServerSender extends Thread {
 
             output.println(data);
 
-            System.out.println("sent socket - " + data);
+            //System.out.println("sent socket - " + data);
         } catch (IOException e) {
             e.printStackTrace();
         }
