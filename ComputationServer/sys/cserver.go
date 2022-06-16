@@ -37,10 +37,11 @@ func startServer() {
 	fmt.Println("listening on", connectionPort, " . . .")
 	fmt.Println("")
 
-	checksList := make([]Check, 1)
+	checksList := make([]Check, 2)
 	processorsList := make([]Processor, 1)
 
 	checksList[0] = CheckAbilties{}
+	checksList[1] = CheckSpeed{}
 	processorsList[0] = StatusProcessor{}
 
 	// run loop forever (or until ctrl-c)
@@ -57,7 +58,7 @@ func startServer() {
 		// remove the \n at the end
 		message = strings.Trim(message, "\n")
 
-		fmt.Println("received request ->", message)
+		//fmt.Println("received request ->", message)
 
 		executeProcessors(message, processorsList)
 		executeChecks(message, checksList)

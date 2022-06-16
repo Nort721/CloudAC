@@ -2,6 +2,7 @@ package sys
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -34,14 +35,38 @@ func (c StatusProcessor) ProcessesIncomingPacket(packetType PacketType, args []s
 
 	} else if packetType == FLYING {
 
+		x, _ := strconv.ParseFloat(args[6], 64)
+		y, _ := strconv.ParseFloat(args[7], 64)
+		z, _ := strconv.ParseFloat(args[8], 64)
+		yaw, _ := strconv.ParseFloat(args[9], 32)
+		pitch, _ := strconv.ParseFloat(args[10], 32)
+		isPos, _ := strconv.ParseBool(args[3])
+		isLook, _ := strconv.ParseBool(args[4])
+		onGround, _ := strconv.ParseBool(args[5])
+
 		if Contains(uuid) {
 			profile := Get(uuid)
 
-			profile.x = 0
-			profile.y = 0
-			profile.z = 0
-			profile.yaw = 0
-			profile.pitch = 0
+			profile.lastOnGround = profile.onGround
+			profile.onGround = onGround
+
+			if isPos {
+				profile.lastLocation.x = profile.latestLocation.x
+				profile.lastLocation.y = profile.latestLocation.y
+				profile.lastLocation.z = profile.latestLocation.z
+
+				profile.latestLocation.x = x
+				profile.latestLocation.y = y
+				profile.latestLocation.z = z
+			}
+
+			if isLook {
+				profile.lastLocation.yaw = profile.latestLocation.yaw
+				profile.lastLocation.pitch = profile.latestLocation.pitch
+
+				profile.latestLocation.yaw = float32(yaw)
+				profile.latestLocation.pitch = float32(pitch)
+			}
 
 			profile_map[uuid] = profile
 		}

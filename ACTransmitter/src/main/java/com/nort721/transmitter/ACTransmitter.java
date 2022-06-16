@@ -14,7 +14,7 @@ public class ACTransmitter extends JavaPlugin {
 
     private final List<PacketAdapter> packetAdapters = new ArrayList<>();
 
-    @Getter private ComputationServerHandler computationServerHandler;
+    @Getter private ComputationServerSender computationServerSender;
 
     public static ACTransmitter getInstance() {
         return getPlugin(ACTransmitter.class);
@@ -24,8 +24,11 @@ public class ACTransmitter extends JavaPlugin {
     public void onEnable() {
         getServer().getPluginManager().registerEvents(new BukkitListener(), this);
         packetAdapters.add(new PacketsListener(this));
-        computationServerHandler = new ComputationServerHandler("localhost", 1234);
-        computationServerHandler.start();
+
+        ComputationServerListener computationServerListener = new ComputationServerListener();
+        computationServerListener.start();
+        computationServerSender = new ComputationServerSender("localhost", 1234);
+        computationServerSender.start();
 
         sendConsoleMessage("has been enabled");
     }
@@ -33,7 +36,7 @@ public class ACTransmitter extends JavaPlugin {
     @Override
     public void onDisable() {
         packetAdapters.forEach(ProtocolLibrary.getProtocolManager()::removePacketListener);
-        computationServerHandler.closeConnection();
+        computationServerSender.closeConnection();
         sendConsoleMessage("has been disabled");
     }
 

@@ -14,6 +14,6 @@ public class BukkitListener implements Listener {
                 player.getUniqueId() + "|" +
                 System.currentTimeMillis();
 
-        ACTransmitter.getInstance().getComputationServerHandler().sendDataToServer(packetData);
+        ACTransmitter.getInstance().getComputationServerSender().sendDataToServer(packetData);
     }
 }
