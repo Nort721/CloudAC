@@ -2,6 +2,10 @@ package com.nort721.transmitter;
 
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.events.PacketAdapter;
+import com.nort721.transmitter.cserver.ComputationServerListener;
+import com.nort721.transmitter.cserver.ComputationServerSender;
+import com.nort721.transmitter.listeners.BukkitListener;
+import com.nort721.transmitter.listeners.PacketsListener;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -16,17 +20,22 @@ public class ACTransmitter extends JavaPlugin {
 
     @Getter private ComputationServerSender computationServerSender;
 
+    /**
+     * Gets the instance of the plugin that's currently active in memory
+     * @return An ACTransmitter instance
+     */
     public static ACTransmitter getInstance() {
         return getPlugin(ACTransmitter.class);
     }
 
     @Override
     public void onEnable() {
-        getServer().getPluginManager().registerEvents(new BukkitListener(), this);
+        new BukkitListener(this);
         packetAdapters.add(new PacketsListener(this));
 
         ComputationServerListener computationServerListener = new ComputationServerListener();
         computationServerListener.start();
+
         computationServerSender = new ComputationServerSender("localhost", 1234);
         computationServerSender.start();
 
@@ -41,6 +50,7 @@ public class ACTransmitter extends JavaPlugin {
     }
 
     public void sendConsoleMessage(String msg) {
-        Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "[ACTransmitter] " + ChatColor.RESET + msg);
+        Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "[" + getDescription().getName() + "] " + ChatColor.RESET + msg);
     }
+
 }

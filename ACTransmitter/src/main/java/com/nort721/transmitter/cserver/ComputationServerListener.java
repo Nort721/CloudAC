@@ -1,5 +1,7 @@
-package com.nort721.transmitter;
+package com.nort721.transmitter.cserver;
 
+import com.nort721.transmitter.ACTransmitter;
+import com.nort721.transmitter.utils.CompressionUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -67,7 +69,7 @@ public class ComputationServerListener extends Thread {
         public void run() {
             try {
 
-                String data = input.readLine();
+                String data = CompressionUtil.decode(input.readLine());
                 System.out.println(socket.getInetAddress().getHostName() + " -> " + data);
 
                 String[] args = getArgs(data, '|');

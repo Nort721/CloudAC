@@ -35,16 +35,16 @@ func (c StatusProcessor) ProcessesIncomingPacket(packetType PacketType, args []s
 
 	} else if packetType == FLYING {
 
-		x, _ := strconv.ParseFloat(args[6], 64)
-		y, _ := strconv.ParseFloat(args[7], 64)
-		z, _ := strconv.ParseFloat(args[8], 64)
-		yaw, _ := strconv.ParseFloat(args[9], 32)
-		pitch, _ := strconv.ParseFloat(args[10], 32)
-		isPos, _ := strconv.ParseBool(args[3])
-		isLook, _ := strconv.ParseBool(args[4])
-		onGround, _ := strconv.ParseBool(args[5])
-
 		if Contains(uuid) {
+			x, _ := strconv.ParseFloat(args[6], 64)
+			y, _ := strconv.ParseFloat(args[7], 64)
+			z, _ := strconv.ParseFloat(args[8], 64)
+			yaw, _ := strconv.ParseFloat(args[9], 32)
+			pitch, _ := strconv.ParseFloat(args[10], 32)
+			isPos, _ := strconv.ParseBool(args[3])
+			isLook, _ := strconv.ParseBool(args[4])
+			onGround, _ := strconv.ParseBool(args[5])
+
 			profile := Get(uuid)
 
 			profile.lastOnGround = profile.onGround
@@ -73,10 +73,10 @@ func (c StatusProcessor) ProcessesIncomingPacket(packetType PacketType, args []s
 
 	} else if packetType == CLIENT_ABILITIES {
 
-		var isFlying string = args[3]
-		var isAllowedFlight string = args[4]
-
 		if Contains(uuid) {
+			var isFlying string = args[3]
+			var isAllowedFlight string = args[4]
+
 			profile := Get(uuid)
 
 			// there is probably a better way to do that, but works for now...
@@ -88,10 +88,10 @@ func (c StatusProcessor) ProcessesIncomingPacket(packetType PacketType, args []s
 
 	} else if packetType == SERVER_ABILITIES {
 
-		var isFlying string = args[3]
-		var isAllowedFlight string = args[4]
-
 		if Contains(uuid) {
+			var isFlying string = args[3]
+			var isAllowedFlight string = args[4]
+
 			profile := Get(uuid)
 
 			// there is probably a better way to do that, but works for now...

@@ -1,5 +1,6 @@
-package com.nort721.transmitter;
+package com.nort721.transmitter.cserver;
 
+import com.nort721.transmitter.utils.CompressionUtil;
 import lombok.Getter;
 
 import java.io.BufferedReader;
@@ -36,17 +37,15 @@ public class ComputationServerSender extends Thread {
 
     public void sendDataToServer(String data) {
         try {
+
             socket = new Socket(computation_server_address, computation_server_port);
 
-            // data received from license server
             input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-            // used to send data to license server
             output = new PrintWriter(socket.getOutputStream(), true);
 
-            output.println(data);
+            output.println(CompressionUtil.encode(data));
 
-            //System.out.println("sent socket - " + data);
         } catch (IOException e) {
             e.printStackTrace();
         }

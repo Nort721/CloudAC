@@ -82,6 +82,7 @@ func (c CheckSpeed) OnPacketReceived(packetType PacketType, args []string) {
 	}
 }
 
+// let the minecraft server know that the player got flagged
 func flagPlayer(uuid string, data string) {
 	fmt.Println("server -> " + data + " -> FLAG!")
 

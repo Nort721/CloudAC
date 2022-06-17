@@ -1,4 +1,4 @@
-package com.nort721.transmitter;
+package com.nort721.transmitter.utils.wrappers;
 
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;

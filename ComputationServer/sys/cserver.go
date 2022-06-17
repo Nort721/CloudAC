@@ -53,9 +53,9 @@ func startServer() {
 		// get message, output
 		message, _ := bufio.NewReader(socket).ReadString('\n')
 
+		// decompress the data
 		message = Decode(message)
 
-		// remove the \n at the end
 		message = strings.Trim(message, "\n")
 
 		//fmt.Println("received request ->", message)
