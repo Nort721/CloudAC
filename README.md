@@ -1,2 +1,11 @@
-# CloudAC
-A minecraft anticheat system that performs all checks and heavy calculations on a separate server
+## What is CloudAC
+CloudAC is a prototype, proof of concept, micro minecraft anticheat system that performs all its checks and data processing on a separate program that can be installed on a different machine to truely remove all the performance impact of the checks and data processors (Which are the heaviest parts of an anticheat) from the Minecraft-server itself, the only anticheat related actions that are actually performed by the Minecraft-server's resources is sending all the relevant packets data to the Computation server and the punishment system.
+
+## Why
+CloudAC shows an idea that would work to actually completely solve one of the biggest problems of server sided Minecraft anticheats, agree or not any AntiCheat even with the best optimizations and most elegant source code thats built to prevent most or all the game breaking cheats in Minecraft will take segnificantly more resources than your average plugin, sometimes in more savere cases the AntiCheat will improve your player's experience by banning cheaters but will also degrade it because of lag caused by it.
+
+## The concept
+The idea is to completely separate most of the AntiCheats operations from the Minecraft-server (specifically the heavy ones) and to perform them on a separate machine, then send the relevant results of those operations back to the Minecraft-server, in the case of CloudAC currently those results are the flags, but in theory they could be a lot of things, for example maybe a result of an overtime analysis of the player's data or whatever design you'd prefer to use. while the Minecraft-server is still fully protected from cheaters but just without the performance impact that typically comes with an AntiCheat.
+
+### What about the latency
+In CloudAC's case the latency of sending the packets data to the Computation program using sockets is not much of a problem as we are going for a silent AntiCheat design, there are two ways to configure an AntiCheat to operate depending on what your priority is, banning the cheater, or preventing the cheat, if your priority is to ban them, its better to not let the cheater know if he is being detected by setting him back, its better to "keep them in the dark" and let them cheat until your AntiCheat has enough data to ban them, this is the tactic most bigger servers use and in my personal opinion its the superior one and would work perfectly with CloudAC's design, focusing on preventing the cheat could also work pretty well but just seems less of a good way to go about it.
