@@ -18,10 +18,10 @@ CloudAC is a prototype meant to show how designing this kind of system could wor
 
 If you are interested in helping us continute and improve CloudAC,
 here is a ToDo list:
-- Upgrade the sockets code to use TLS
+- Upgrade the sockets code to use a secure encrypted connection with TLS
 - Improve data processing to be dynamic and not need to check packet type
 - Add more checks and increase data processing
-- More stuff
+- Your suggestion here
 
 ### Disclaimer
 I didn't invent the idea of running the brain of your AntiCheat separately from your Minecraft-server itself, that idea existed for some time and is/was used by a few big servers, the idea of CloudAC is to make it more widespread and known to the public and hopefully inspire future projects to use this superior design and by that hopefully improve the AntiCheating solutions that are coming out there.
