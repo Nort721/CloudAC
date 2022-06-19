@@ -21,7 +21,7 @@ here is a ToDo list:
 - Upgrade the sockets code to use a secure encrypted connection with TLS
 - Improve data processing to be dynamic and not need to check packet type
 - Add more checks and increase data processing
-- Your suggestion here
+- Your suggestions
 
 ### Disclaimer
 I didn't invent the idea of running the brain of your AntiCheat separately from your Minecraft-server itself, that idea existed for some time and is/was used by a few big servers, the idea of CloudAC is to make it more widespread and known to the public and hopefully inspire future projects to use this superior design and by that hopefully improve the AntiCheating solutions that are coming out there.
