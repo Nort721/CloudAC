@@ -17,11 +17,11 @@ In CloudAC's case, the latency of sending the packets data to the Computation pr
 CloudAC is a prototype meant to show how designing this kind of system could work and was never meant to be anything more than that, however we are open-minded and while without dedicated development it would probably never become a production ready anti-cheat we do welcome any contributions that come to expand and improve the code base which will provide a better example for the community.
 
 If you are interested in helping us continute and improve CloudAC,
-here is a ToDo list:
+here our current ToDo list:
 - Upgrade the sockets code to use a secure encrypted connection with TLS
 - Improve data processing to be dynamic and not need to check packet type
 - Add more checks and increase data processing
-- Your suggestions
+- Your suggestions and ideas
 
 ### Disclaimer
 I didn't invent the idea of running the brain of your AntiCheat separately from your Minecraft-server itself, that idea existed for some time and is/was used by a few big servers, the idea of CloudAC is to make it more widespread and known to the public and hopefully inspire future projects to use this superior design and by that hopefully improve the AntiCheating solutions that are coming out there.
