@@ -25,6 +25,9 @@ here is a ToDo list:
 
 ### Disclaimer
 I didn't invent the idea of running the brain of your AntiCheat separately from your Minecraft-server itself, that idea existed for some time and is/was used by a few big servers, the idea of CloudAC is to make it more widespread and known to the public and hopefully inspire future projects to use this superior design and by that hopefully improve the AntiCheating solutions that are coming out there.
+
+#### Disclaimer - current code state
+The current code was written pretty swiftly and was bodged together to some extent since originally I didn't plan on publishing it, it was meant to be more of a proof of concept attempt, which is why some parts might be a bit wack, I did and will introduce more clean up and comments but I believe it is decent already and can definitely be used as a nice base, however, feel free to implement any changes or improvements you believe fit.
 <br/><br/>
 <br/><br/>
 ![resized](https://user-images.githubusercontent.com/24839815/174480405-35d2422c-f1b8-4035-a7c2-ff34a2cfb89a.png)
